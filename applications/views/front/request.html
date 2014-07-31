@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>2号店</title>
+{_include file=front/include/common_include.html_}
+{_include file=front/include/ie6png.html_}
+<script type="text/javascript" >
+jQuery(function ($){
+	//设置筛选的选中状态
+	$("#choose_wrap ul li.inner_ul ul").each(function (){
+		$(this).find("a").removeClass("selected");
+		$(this).find("a[default="+$(this).attr("ov")+"]").addClass("selected");
+	});
+});
+</script>
+</head>
+
+<body>
+<div class="page">
+{_include file=front/include/header.html_}
+	<div class="position w980 ">
+		<ul class="position_ul clearfix">
+			<li class="first">您现在的位置：</li>
+			<li><a href="{_$front_url_}">首页</a></li>
+			<li class="cur">校园易物</li>
+		</ul>
+	</div>
+	<div class="choose wraps w980" id="choose_wrap">
+		<ul class="clearfix wrap_ul">
+			<li class="left_li fl">　　类别：</li>
+			<li class="inner_ul fl" >
+				<ul class="clearfix" ov="{_$cur_nav|default:0_}">
+					<li class=" fl">
+						<a href="{_$front_url_}request/index/?nav=0&old_level={_$cur_oldLevel|default:0_}&brand={_$cur_brand|default:0_}&price={_$cur_price|default:0_}" class="selected" default="0">全部</a>
+					</li>
+			    {_section name=nav loop=$allMainColumn_}
+				    <li class=" fl">
+							<a href="{_$front_url_}request/index/?nav={_$allMainColumn[nav].id_}&old_level={_$cur_oldLevel|default:0_}&brand={_$cur_brand|default:0_}&price={_$cur_price|default:0_}" default="{_$allMainColumn[nav].id_}">{_$allMainColumn[nav].column_name_}</a>
+						</li>
+           {_/section_}
+				</ul>
+			</li>
+		</ul>
+		<ul class="clearfix wrap_ul">
+			<li class="left_li fl">新旧程度：</li>
+			<li class="inner_ul fl" >
+				<ul class="clearfix" ov="{_$cur_oldLevel|default:0_}">
+					<li class=" fl">
+						<a href="{_$front_url_}request/index/?nav={_$cur_nav|default:0_}&old_level=0&brand={_$cur_brand|default:0_}&price={_$cur_price|default:0_}"  class="selected" default="0">全部</a>
+					</li>
+					<li class=" fl">
+						<a href="{_$front_url_}request/index/?nav={_$cur_nav|default:0_}&old_level=1&brand={_$cur_brand|default:0_}&price={_$cur_price|default:0_}" default="1">全新</a>
+					</li>
+					<li class=" fl">
+						<a href="{_$front_url_}request/index/?nav={_$cur_nav|default:0_}&old_level=2&brand={_$cur_brand|default:0_}&price={_$cur_price|default:0_}" default="2">95成新</a>
+					</li>
+					<li class=" fl">
+						<a href="{_$front_url_}request/index/?nav={_$cur_nav|default:0_}&old_level=3&brand={_$cur_brand|default:0_}&price={_$cur_price|default:0_}" default="3">9成新</a>
+					</li>
+					<li class=" fl">
+						<a href="{_$front_url_}request/index/?nav={_$cur_nav|default:0_}&old_level=4&brand={_$cur_brand|default:0_}&price={_$cur_price|default:0_}" default="4">85成新</a>
+					</li>
+					<li class=" fl">
+						<a href="{_$front_url_}request/index/?nav={_$cur_nav|default:0_}&old_level=5&brand={_$cur_brand|default:0_}&price={_$cur_price|default:0_}" default="5">8成新</a>
+					</li>
+					<li class=" fl">
+						<a href="{_$front_url_}request/index/?nav={_$cur_nav|default:0_}&old_level=6&brand={_$cur_brand|default:0_}&price={_$cur_price|default:0_}" default="6">7成新及以下</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		<ul class="clearfix wrap_ul">
+			<li class="left_li fl">　　品牌：</li> 
+			<li class="inner_ul fl" >
+				<ul class="clearfix" ov="{_$cur_brand|default:0_}">
+					<li class=" fl">
+						<a href="{_$front_url_}request/index/?nav={_$cur_nav|default:0_}&old_level={_$cur_oldLevel|default:0_}&brand=0&price={_$cur_price|default:0_}" class="selected" default="0">全部</a>
+					</li>
+			     {_section name=brand loop=$allMainBrand_}
+				    <li class=" fl">
+							<a href="{_$front_url_}request/index/?nav={_$cur_nav|default:0_}&old_level={_$cur_oldLevel|default:0_}&brand={_$allMainBrand[brand].id_}&price={_$cur_price|default:0_}" default="{_$allMainBrand[brand].id_}">{_$allMainBrand[brand].brand_name_}</a>
+						</li>
+           {_/section_}
+				</ul>
+			</li>
+		</ul>
+		<ul class="clearfix wrap_ul">
+			<li class="left_li fl">　　价格：</li>
+			<li class="inner_ul fl" >
+				<ul class="clearfix" ov="{_$cur_price|default:0_}">
+					<li class=" fl">
+						<a href="{_$front_url_}request/index/?nav={_$cur_nav|default:0_}&old_level={_$cur_oldLevel|default:0_}&brand={_$cur_brand|default:0_}&price=0" class="selected" default="0">全部</a>
+					</li>
+					{_section name=price loop=$allPrice_}
+			    <li class=" fl">
+						<a href="{_$front_url_}request/index/?nav={_$cur_nav|default:0_}&old_level={_$cur_oldLevel|default:0_}&brand={_$cur_brand|default:0_}&price={_$allPrice[price].price_start_}_{_$allPrice[price].price_end_}" default="{_$allPrice[price].price_start_}_{_$allPrice[price].price_end_}">{_if $allPrice[price].price_start && $allPrice[price].price_end_}{_$allPrice[price].price_start_}-{_$allPrice[price].price_end_}元{_elseif $allPrice[price].price_end && !$allPrice[price].price_start_}{_$allPrice[price].price_end_}元以下{_else_}{_$allPrice[price].price_start_}元以上{_/if_}</a>
+					</li>
+          {_/section_}
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="main w980 clearfix">
+		<div class="hot fl">
+			<ul class="hot_list_ul">
+					{_if $requestList_}
+	 	   			{_section name=request loop=$requestList_}
+	        	  <li class="hot_list_li clearfix wraps">
+		            <div class="img fl">
+		              <a href="{_$front_url_}request/requestDetail/{_$requestList[request].id_}.html" target="_blank" ><img src="{_$requestList[request].thumbs_}" width="240" height="160" /></a>
+		            </div>
+		            <div class="text fl">
+		            	<h4><a href="{_$front_url_}request/requestDetail/{_$requestList[request].id_}.html" target="_blank" class="f44" title="{_$requestList[request].title_}">{_$requestList[request].title|mb_truncate:38_}</a></h4>
+		            	<p class="pirce ">Price:<span class="num">￥{_$requestList[request].price_}元</span></p>
+		              <span class="time">{_if $requestList[request].from_days!=0_}{_$requestList[request].from_days_} days ago{_else_}Today {_/if_}&middot; by {_$requestList[request].user_name_} &middot; {_$requestList[request].view_count_} views</span>
+			            <div class="tags">Tags: {_$requestList[request].university_}, <a href="{_$front_url_}request/index/?nav={_$cur_nav|default:0_}&old_level={_$cur_oldLevel|default:0_}&brand={_$requestList[request].brand_main_}&price={_$cur_price|default:0_}">{_$requestList[request].brand_name_}</a></div>
+			            <p>{_$requestList[request].info|mb_truncate:135_}</p>
+		            </div>
+		          </li>
+		          {_/section_}
+					{_else_}
+								<li class="hot_list_li clearfix wraps no_result">
+			            	该学校暂时没有需求，<a href="{_$front_url_}request/add.html" >发布需求</a>
+			          </li>
+					{_/if_}
+
+	       </ul>
+	       {_$pageFen_}
+		</div>
+		<div class="right wraps fr request_right">
+		  <div class="release">
+				<p class="text">有类似的需求？</p>
+				<p class="re"><a href="{_$front_url_}request/add.html" class="common_bg out_text need_university">发布需求</a></p>
+			</div>
+		</div>
+		<div class="right wraps fr request_right">
+			<div class="recommend">
+				<h3>本周推荐</h3>
+				<dl class="rec_dl">
+					<dt><a href="javascript:void(0)"><img src="images/recom_img1.jpg" width="240" height="130" alt="本期热门推荐"/></a></dt>
+					<dd>
+						<h6><a href="javascript:void(0)">新学期要穿什么衣服</a></h6>
+						<p><a href="javascript:void(0)">九月来了，哦耶，新的一学期驾到了！新学期要有新气象，应首先从穿衣打扮开始，MM们想好要穿什么了吗?是时尚舒适的卫衣，还是百搭自在的T恤，或者选择一件连衣裙来提升气质，当然也可以用风衣来增强气场，保持足够的时尚度，成为校园里的一道靓丽风景。</a></p>
+					</dd>
+				</dl>
+				<dl class="list_dl clearfix">
+					<dt class="fl"><a href="javascript:void(0)"><img src="images/re_small1.jpg" width="60" height="60" alt="本期热门推荐"/></a></dt>
+					<dd class="fl">
+						<h6><a href="javascript:void(0)">新学期要穿什么衣服新学期要穿什么衣服</a></h6>
+						<p><a href="javascript:void(0)">九月来了，哦耶，新的一学期驾到了！新学期要有新气象，应首先从穿衣打扮开始，MM们想好要穿什么了吗?是时尚舒适的卫衣，还是百搭自在的T恤，或者选择一件连衣裙来提升气质，当然也可以用风衣来增强气场，保持足够的时尚度，成为校园里的一道靓丽风景。</a></p>
+					</dd>
+				</dl>
+				<dl class="list_dl clearfix">
+					<dt class="fl"><a href="javascript:void(0)"><img src="images/re_small1.jpg" width="60" height="60" alt="本期热门推荐"/></a></dt>
+					<dd class="fl">
+						<h6><a href="javascript:void(0)">新学期要穿什么衣服新学期要穿什么衣服</a></h6>
+						<p><a href="javascript:void(0)">九月来了，哦耶，新的一学期驾到了！新学期要有新气象，应首先从穿衣打扮开始，MM们想好要穿什么了吗?是时尚舒适的卫衣，还是百搭自在的T恤，或者选择一件连衣裙来提升气质，当然也可以用风衣来增强气场，保持足够的时尚度，成为校园里的一道靓丽风景。</a></p>
+					</dd>
+				</dl>
+				<dl class="list_dl clearfix">
+					<dt class="fl"><a href="javascript:void(0)"><img src="images/re_small1.jpg" width="60" height="60" alt="本期热门推荐"/></a></dt>
+					<dd class="fl">
+						<h6><a href="javascript:void(0)">新学期要穿什么衣服新学期要穿什么衣服</a></h6>
+						<p><a href="javascript:void(0)">九月来了，哦耶，新的一学期驾到了！新学期要有新气象，应首先从穿衣打扮开始，MM们想好要穿什么了吗?是时尚舒适的卫衣，还是百搭自在的T恤，或者选择一件连衣裙来提升气质，当然也可以用风衣来增强气场，保持足够的时尚度，成为校园里的一道靓丽风景。</a></p>
+					</dd>
+				</dl>
+			</div>
+			<div class="follow">
+				<h3>关注我们</h3>
+				<dl class="list_dl clearfix">
+					<dt class="fl"><a href="javascript:void(0)"><img src="images/logo2.jpg" width="80" height="52" alt="本期热门推荐"/></a></dt>
+					<dd class="fl">
+						<h6>2号店官方微博</h6>
+						<p><a href="javascript:void(0)" class="common_bg fow_btn">加关注</a></p>
+					</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+{_include file=front/include/footer.html_}
+</div>
+</body>
+</html>

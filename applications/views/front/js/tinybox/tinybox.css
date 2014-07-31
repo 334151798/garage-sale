@@ -1,0 +1,5 @@
+#tinybox {position:absolute; display:none; padding:10px; background:#fff url(images/preload.gif) no-repeat 50% 50%; border:10px solid #e3e3e3; z-index:2000}
+#tinymask {position:absolute; display:none; top:0; left:0; height:100%; width:100%; background:#000; z-index:1500}
+#pop{}
+#ie6Iframe{_width:300px;_height:200px;_z-index:1;_position:absolute;_top:260px;_left:230px;_filter:alpha(opacity=0);}
+#tinycontent {background:#fff}

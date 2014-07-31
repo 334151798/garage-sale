@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+{_include file=admin/include/css_js.html_}
+<style type="text/css">
+body{width:888px;overflow:hidden;}
+</style>
+</head>
+<body>
+<h2 class="clearfix">
+  <span class="p_text">您现在的位置：</span>
+	<a href="{_$admin_url_}column/show/">分类管理</a> &raquo; 
+	<span class="active">修改价格区间</span>
+	<a href="{_$admin_url_}price/show/" class="back fr">返回价格区间列表</a>
+</h2>
+<div id="main">
+ 	<form action="{_$admin_url_}price/update/" class="jNice registerform" method="post" id="validateForm">
+			<h3>修改价格区间</h3>
+     	<fieldset>
+         	<div class="clearfix lists">
+	         	<span class="fl text_label">价格区间起始值：</span>
+	         	<input type="text" class="text-long fl" name="price_start" value="{_$curPriceInfo.price_start_}" />
+	         	{_$price_start_error_}
+          </div>
+          <div class="clearfix lists">
+	         	<span class="fl text_label">价格区间结束值：</span>
+	         	<input type="text" class="text-long fl" name="price_end" value="{_$curPriceInfo.price_end_}" />
+	         	{_$price_end_error_}
+          </div>
+             <input type="hidden" value="{_$curPriceInfo.id_}" name="id"/>
+             <input type="submit" value="提交" name="submit"/>
+         </fieldset>
+    </form>
+  </div>
+  </body>
+  </html>

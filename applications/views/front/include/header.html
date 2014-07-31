@@ -1,0 +1,36 @@
+<div class="top clearfix w980">
+	<p class="fl text">
+		<strong class=""><strong class="high_light school mr15">{_$universityName|default:"所有院校"_}</strong>[<a href="javascript:void(0)" class="normal" id="ch_college">切换</a>]</strong>
+		<span class="mlr15">欢迎来到2号店，最专业的校园二手平台</span>
+	</p>
+	<ul class="clearfix fr">
+		<li>您好！</li>
+		{_if $user_id_}
+			<li class="high_light">{_$user_name_}</li>
+			<li><a href="{_$front_url_}user/center.html">我的二号店</a></li>
+			<li><a href="{_$front_url_}user/logout.html">退出</a></li>
+		{_else_}
+				<li><a href="{_$front_url_}user/login.html">登陆</a></li>
+				<li><a href="{_$front_url_}user/regist.html">注册</a></li>
+				<li><a href="javascript:void(0)" class="qq_login"></a></li>
+		{_/if_}
+	</ul>
+</div>
+<div class="nav">
+	<div class="w980 nav_inner clearfix">
+		<h1 class="fl"><a href="{_$front_url_}" class="out_text">2号店，最专业的校园二手平台</a></h1>
+		<div class="nav_search fl clearfix">
+			<ul class="clearfix fl nav_ul" navEq={_$navEq_}>
+				<li class=""><a href="{_$front_url_}" class="show">首页</a></li>
+				<li class=""><a href="{_$front_url_}request/index.html" class="need_university">校园易物</a></li>
+				<li class=""><a href="javascript:void(0)">哇喔！</a></li>
+			</ul>
+			<div class="search_wrap fr">
+				<form action="{_$front_url_}search.html" method="post" class="clearfix">
+					<input type="text" class="search" value="{_$searchKeyWords|default:'请输入关键字搜索.....'_}" name="keywords"/>
+					<input type="submit" class="search_btn" value="&nbsp;" name="submit"/>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

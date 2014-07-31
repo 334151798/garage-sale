@@ -1,0 +1,2 @@
+#goTopBtn {width: 48px; height: 48px;background:url(../images/scroll_top.jpg) left top no-repeat;position: fixed; bottom: 35px; right: 20px; _position: absolute; _right: 0;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop)+550);}
+#goTopBtn:hover{background:url(../images/scroll_top_hover.jpg) left top no-repeat;}

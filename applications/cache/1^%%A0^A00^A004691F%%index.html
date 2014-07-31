@@ -1,0 +1,437 @@
+294
+a:4:{s:8:"template";a:5:{s:16:"front/index.html";b:1;s:33:"front/include/common_include.html";b:1;s:25:"front/include/ie6png.html";b:1;s:25:"front/include/header.html";b:1;s:25:"front/include/footer.html";b:1;}s:9:"timestamp";i:1350808347;s:7:"expires";i:1350811947;s:13:"cache_serials";a:0:{}}﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>2号店</title>
+<base href="http://www.tohaodian.com/applications/views/front/"/>
+<meta name="Keywords"  content="" />
+<meta name="Description" content="" />
+
+<!-- CSS -->
+<link rel="shortcut icon" href="images/logo.ico" type="image/x-icon" />
+<link href="css/common.css" rel="stylesheet" type="text/css" />
+<link href="css/login_reg.css" rel="stylesheet" type="text/css" />
+<link href="css/index.css" rel="stylesheet" type="text/css" />
+<link href="css/exchange.css" rel="stylesheet" type="text/css" />
+<link href="css/college.css" rel="stylesheet" type="text/css" />
+<link href="css/lrtk.css" type="text/css" rel="stylesheet" />
+<link href="js/tinybox/tinybox.css" rel="stylesheet" type="text/css"  />
+<link href="js/Validform_v5.1/css/style.css" type="text/css" rel="stylesheet" />
+<link href="js/Validform_v5.1/css/demo.css" type="text/css" rel="stylesheet" />
+
+
+<!-- JavaScripts-->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/tinybox/tinybox.js"></script>
+<script type="text/javascript" src="js/searchFocus.js"></script>
+<script type="text/javascript" src="js/Validform_v5.1/js/Validform_v5.1_min.js"></script>
+<script type="text/javascript" src="js/Validform_v5.1/plugin/passwordStrength/passwordStrength-min.js"></script>
+<!-- <script type="text/javascript" src="js/setSelectRadioCheckboxDefault.js"></script>-->
+<script type="text/javascript" src="js/scrolltop.js"></script>
+
+<script type="text/javascript">
+/*
+ * 选择学校的函数，写成jQuery的方法，方便全局调用
+*/
+jQuery.setUniversity = function(link){
+	//如果university_id不存在，即学校没有选，就强制选，
+	if ($("#university_id").val()==0){
+		TINY.box.show('http://www.tohaodian.com/region/index.html',1,640,515,1,null,link);
+	}else{//否则跳到指定的url
+		location.href=link;
+	}
+}
+
+/**
+ * 设置省市的默认选中样式
+ * 
+ * 因为打开选中学校页面时，js不会被执行，所以在这里设一个定时器，设置完成后，就清除定时器
+ *
+ */
+jQuery.setDefaultProvince = function (){
+	var t= setInterval(function (){
+		if ($("#province_id").val()!=0){
+			//alert($("#province_id").val());
+			//热门城市的设置
+			$(".choose_college_wrap .hot_city li a").removeClass("cur");
+			$(".choose_college_wrap .hot_city li a[id_eq='"+$("#province_id").val()+"']'").addClass("cur");
+			
+			//所有分类的设置
+			$(".choose_college_wrap .college_index li a").removeClass("cur");
+			$(".choose_college_wrap .college_index li a[id_eq='"+$("#province_id").val()+"']'").addClass("cur");
+		
+			//在2秒钟之后，清除interval
+			setTimeout(function (){clearInterval(t);},2000);
+			
+		}else{
+			clearInterval(t);
+		}
+	},200);
+	
+}
+
+/**
+ * 设置学校 
+ *
+ * 通过传过来的id，发送ajax请求，设置院校，成功之后，跳转到点击之前的页面，如果没有前一页，就跳转到首页
+ *
+ * @param number id  学校的id
+ * @return void
+ */
+function setCollege(id){
+	$.ajax({
+		   type: "GET",
+		   url: "http://www.tohaodian.com//region/setCollege.html",
+		   data: "university_id="+id,
+		   success: function(msg){
+			   $("#tinycontent").attr("link")!="undefined" ? location.href=$("#tinycontent").attr("link") : location.reload();
+		   }
+		});
+}
+
+
+/**
+ * 获取学校 
+ *
+ * 通过传过来的id，发送ajax请求，获取该省或市的所有大学
+ *
+ * @param number id  省或市的id
+ * @return void
+ */
+function collegeAjax(id){
+	//热门城市的设置
+	$(".choose_college_wrap .hot_city li a").removeClass("cur");
+	$(".choose_college_wrap .hot_city li a[id_eq='"+id+"']'").addClass("cur");
+	
+	//所有分类的设置
+	$(".choose_college_wrap .college_index li a").removeClass("cur");
+	$(".choose_college_wrap .college_index li a[id_eq='"+id+"']'").addClass("cur");
+	
+	$(this).addClass("cur");
+	$.ajax({
+	   type: "GET",
+	   url: "http://www.tohaodian.com//region/getCollege.html",
+	   data: "province_id="+id,
+	   success: function(msg){
+		   var collegeLists = jQuery.parseJSON(msg),collegeWrap = $("#college_ul");
+		   collegeWrap.html("");
+		   for (var i=0,l=collegeLists.length;i<l;i++){
+			   collegeWrap.append("<li><a href='javascript:setCollege("+collegeLists[i].university_id+");'>"+collegeLists[i].university+"</a></li>");
+		   }
+	   }
+	});
+}
+
+
+jQuery(function ($){
+
+	//选择学校,当点击进入页面时自动弹出
+	$(".page a.need_university").click(function (e){
+		e.preventDefault();
+		var originalHref = $(this).attr("href");
+		jQuery.setDefaultProvince();
+		jQuery.setUniversity(originalHref);
+		
+		
+	});
+
+	
+	/*
+	 * 选择学校，顶部手动点击弹出
+	 */
+	$("#ch_college").click(function (e){
+		e.preventDefault();
+		jQuery.setDefaultProvince();
+		TINY.box.show('http://www.tohaodian.com/region/index.html',1,640,515,1,null);
+		
+		
+	});
+	
+	/*
+	 * 收藏/取消收藏
+	 */
+		$("#collect_btn").click(function (e){
+			e.preventDefault();
+			var request_id = $(this).attr("request_id"),_this=$(this);
+			if ($(this).attr("status")==1){//如果status=1说明显示的是收藏，点击则是取消收藏
+				$.ajax({
+				   type: "POST",
+				   url: "http://www.tohaodian.com//collect/add.html",
+				   data: "request_id="+request_id,
+				   success: function(msg){
+					   if (msg==1){
+							 TINY.box.show('收藏成功！',0,0,0,0,3,null,'false');
+							 _this.attr("status","0");
+							   _this.html("取消收藏");
+					   }else{
+						   document.write(msg);
+					   }
+				   }
+				});
+			}else{//如果status=0说明显示的是取消收藏，点击则是收藏
+				$.ajax({
+				   type: "POST",
+				   url: "http://www.tohaodian.com//collect/delete.html",
+				   data: "request_id="+request_id,
+				   success: function(msg){
+					   if (msg==1){
+						   TINY.box.show('取消成功！',0,0,0,0,3,null,'false');
+						   _this.attr("status","1");
+						   _this.html("收藏");
+					   }else{
+						   document.write(msg);
+					   }
+				   }
+				});
+			}
+		});
+	
+	
+	
+});
+</script><!--[if IE 6]>
+<script type="text/javascript"  src="js/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script type="text/javascript" >
+jQuery(function($){
+		DD_belatedPNG.fix('.common_bg,.debte_png,.close_light,.page .nav h1 a,.page .big_text .release a:hover');
+});
+</script>
+<![endif]--></head>
+
+<body>
+<div class="page">
+<div class="top clearfix w980">
+	<p class="fl text">
+		<strong class=""><strong class="high_light school mr15">所有院校</strong>[<a href="javascript:void(0)" class="normal" id="ch_college">切换</a>]</strong>
+		<span class="mlr15">欢迎来到2号店，最专业的校园二手平台</span>
+	</p>
+	<ul class="clearfix fr">
+		<li>您好！</li>
+						<li><a href="http://www.tohaodian.com/user/login.html">登陆</a></li>
+				<li><a href="http://www.tohaodian.com/user/regist.html">注册</a></li>
+				<li><a href="javascript:void(0)" class="qq_login"></a></li>
+			</ul>
+</div>
+<div class="nav">
+	<div class="w980 nav_inner clearfix">
+		<h1 class="fl"><a href="http://www.tohaodian.com/" class="out_text">2号店，最专业的校园二手平台</a></h1>
+		<div class="nav_search fl clearfix">
+			<ul class="clearfix fl nav_ul" navEq=0>
+				<li class=""><a href="http://www.tohaodian.com/" class="show">首页</a></li>
+				<li class=""><a href="http://www.tohaodian.com/request/index.html" class="need_university">校园易物</a></li>
+				<li class=""><a href="javascript:void(0)">哇喔！</a></li>
+			</ul>
+			<div class="search_wrap fr">
+				<form action="http://www.tohaodian.com/search.html" method="post" class="clearfix">
+					<input type="text" class="search" value="请输入关键字搜索....." name="keywords"/>
+					<input type="submit" class="search_btn" value="&nbsp;" name="submit"/>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>	<div class="big_img wraps clearfix">
+		<div class="imgs_wrap fl">
+			<img src="images/big_img/demo1.jpg" width="645" height="245" alt="2号店首页推荐"/>
+		</div>
+		<div class="big_text fl">
+			<dl class="big_dl">
+				<dt class="common_bg"><a href="javascript:void(0)" class="ndl">2012十大校园最受欢迎笔记本推荐</a></dt>
+									<dd class="common_bg"><a href="http://www.tohaodian.com/request/requestDetail/29.html" target="_blank">the new iPad(32G)WIFI版 ipad3..</a></dd>
+        					<dd class="common_bg"><a href="http://www.tohaodian.com/request/requestDetail/24.html" target="_blank">出售点卡咯</a></dd>
+        					<dd class="common_bg"><a href="http://www.tohaodian.com/request/requestDetail/28.html" target="_blank">卖个点卡啦，魔兽世界咯..</a></dd>
+        					<dd class="common_bg"><a href="http://www.tohaodian.com/request/requestDetail/26.html" target="_blank">索尼相机低价转让了</a></dd>
+        			</dl>
+			<p class="release"><a href="http://www.tohaodian.com/request/add.html" class="common_bg out_text need_university">发布需求</a></p>
+		</div>
+	</div>
+	<div class="main w980 clearfix">
+		<div class="hot fl">
+			<h2 class="title">HOTS | 热门买卖</h2>
+			<ul class="hot_list_ul">
+	   			        	  <li class="hot_list_li clearfix wraps">
+	            <div class="img fl">
+	              <a href="http://www.tohaodian.com/request/requestDetail/29.html" target="_blank" ><img src="../../uploads/20121007/20121007150934583_thumb.jpg" width="240" height="160" /></a>
+	            </div>
+	            <div class="text fl">
+	            	<h4><a href="http://www.tohaodian.com/request/requestDetail/29.html" target="_blank" class="f44" title="the new iPad(32G)WIFI版 ipad3 大陆行货原封未激活..">the new iPad(32G)WIFI版 ipad3 大陆行货原封未激活 诚心转让ipad3原封未激活，配件齐全 </a></h4>
+	            	<p class="pirce ">Price:<span class="num">￥4000元</span></p>
+		            <span class="time">14 days ago&middot; by zw1232002 &middot; 19 views</span>
+		            <div class="tags">Tags: 南开大学, <a href="http://www.tohaodian.com/request/index/?nav=0&old_level=0&brand=9&price=0">索尼</a></div>
+		            <p>
+	
+	
+		The new ipad （ipad3）大陆行货 
+
+32G 白色 wifi版 
+
+全新原封 未激活！ 
+
+全国包顺丰快递（港澳台除外）~ 
+
+此ipad serial number为：DMPJ6T8YDVD2 
+
+大家购买之..</p>
+	            </div>
+	          </li>
+	                  	  <li class="hot_list_li clearfix wraps">
+	            <div class="img fl">
+	              <a href="http://www.tohaodian.com/request/requestDetail/28.html" target="_blank" ><img src="../../uploads/20121007/20121007150513700_thumb.jpg" width="240" height="160" /></a>
+	            </div>
+	            <div class="text fl">
+	            	<h4><a href="http://www.tohaodian.com/request/requestDetail/28.html" target="_blank" class="f44" title="卖个点卡啦，魔兽世界咯">卖个点卡啦，魔兽世界咯 </a></h4>
+	            	<p class="pirce ">Price:<span class="num">￥200元</span></p>
+		            <span class="time">14 days ago&middot; by zw1232002 &middot; 7 views</span>
+		            <div class="tags">Tags: 南开大学, <a href="http://www.tohaodian.com/request/index/?nav=0&old_level=0&brand=3&price=0">戴尔</a></div>
+		            <p>
+	卖个点卡啦，魔兽世界咯卖个点卡啦，魔兽世界咯
+
+
+	
+
+
+	卖个点卡啦，魔兽世界咯卖个点卡啦，魔兽世界咯
+
+
+	
+
+
+	
+
+
+	卖个点卡啦，魔兽世界咯
+
+
+	
+
+
+	
+
+
+	卖个点卡啦，魔兽世界咯
+
+
+	..</p>
+	            </div>
+	          </li>
+	                  	  <li class="hot_list_li clearfix wraps">
+	            <div class="img fl">
+	              <a href="http://www.tohaodian.com/request/requestDetail/27.html" target="_blank" ><img src="../../uploads/20121007/20121007150109319_thumb.jpg" width="240" height="160" /></a>
+	            </div>
+	            <div class="text fl">
+	            	<h4><a href="http://www.tohaodian.com/request/requestDetail/27.html" target="_blank" class="f44" title="二手笔记本求购咯">二手笔记本求购咯 </a></h4>
+	            	<p class="pirce ">Price:<span class="num">￥2000元</span></p>
+		            <span class="time">14 days ago&middot; by zw1232002 &middot; 5 views</span>
+		            <div class="tags">Tags: 南开大学, <a href="http://www.tohaodian.com/request/index/?nav=0&old_level=0&brand=2&price=0">联想</a></div>
+		            <p>
+	二手笔记本求购咯二手笔记本求购咯二手笔记本求购咯二手笔记本求购咯
+
+
+	
+
+
+	
+
+
+	
+
+
+	撒地方撒地方撒地方撒地方撒地
+
+
+	
+
+
+
+	
+
+
+
+	方撒地方规划局高合金钢天宇天宇通用
+
+
+	
+
+..</p>
+	            </div>
+	          </li>
+	                  	  <li class="hot_list_li clearfix wraps">
+	            <div class="img fl">
+	              <a href="http://www.tohaodian.com/request/requestDetail/26.html" target="_blank" ><img src="../../uploads/20120923/20120923164034633_thumb.jpg" width="240" height="160" /></a>
+	            </div>
+	            <div class="text fl">
+	            	<h4><a href="http://www.tohaodian.com/request/requestDetail/26.html" target="_blank" class="f44" title="索尼相机低价转让了">索尼相机低价转让了 </a></h4>
+	            	<p class="pirce ">Price:<span class="num">￥2000元</span></p>
+		            <span class="time">28 days ago&middot; by zw1232002 &middot; 6 views</span>
+		            <div class="tags">Tags: 南开大学, <a href="http://www.tohaodian.com/request/index/?nav=0&old_level=0&brand=9&price=0">索尼</a></div>
+		            <p>索尼相机低价转让了索尼相机低价转让了索尼相机低价转让了索尼相机低价转让了</p>
+	            </div>
+	          </li>
+	          	       </ul>
+	       <ul class="pagefen"><li class="onthis">1</li><li><a href="http://www.tohaodian.com/?&amp;p=2">2</a></li><li><a href="http://www.tohaodian.com/?&amp;p=2">NEXT</a></li></ul>
+		</div>
+		<div class="right wraps fr">
+			<div class="recommend">
+				<h3>本周推荐</h3>
+				<dl class="rec_dl">
+					<dt><a href="javascript:void(0)"><img src="images/recom_img1.jpg" width="240" height="130" alt="本期热门推荐"/></a></dt>
+					<dd>
+						<h6><a href="javascript:void(0)">新学期要穿什么衣服</a></h6>
+						<p><a href="javascript:void(0)">九月来了，哦耶，新的一学期驾到了！新学期要有新气象，应首先从穿衣打扮开始，MM们想好要穿什么了吗?是时尚舒适的卫衣，还是百搭自在的T恤，或者选择一件连衣裙来提升气质，当然也可以用风衣来增强气场，保持足够的时尚度，成为校园里的一道靓丽风景。</a></p>
+					</dd>
+				</dl>
+				<dl class="list_dl clearfix">
+					<dt class="fl"><a href="javascript:void(0)"><img src="images/re_small1.jpg" width="60" height="60" alt="本期热门推荐"/></a></dt>
+					<dd class="fl">
+						<h6><a href="javascript:void(0)">新学期要穿什么衣服新学期要穿什么衣服</a></h6>
+						<p><a href="javascript:void(0)">九月来了，哦耶，新的一学期驾到了！新学期要有新气象，应首先从穿衣打扮开始，MM们想好要穿什么了吗?是时尚舒适的卫衣，还是百搭自在的T恤，或者选择一件连衣裙来提升气质，当然也可以用风衣来增强气场，保持足够的时尚度，成为校园里的一道靓丽风景。</a></p>
+					</dd>
+				</dl>
+				<dl class="list_dl clearfix">
+					<dt class="fl"><a href="javascript:void(0)"><img src="images/re_small1.jpg" width="60" height="60" alt="本期热门推荐"/></a></dt>
+					<dd class="fl">
+						<h6><a href="javascript:void(0)">新学期要穿什么衣服新学期要穿什么衣服</a></h6>
+						<p><a href="javascript:void(0)">九月来了，哦耶，新的一学期驾到了！新学期要有新气象，应首先从穿衣打扮开始，MM们想好要穿什么了吗?是时尚舒适的卫衣，还是百搭自在的T恤，或者选择一件连衣裙来提升气质，当然也可以用风衣来增强气场，保持足够的时尚度，成为校园里的一道靓丽风景。</a></p>
+					</dd>
+				</dl>
+				<dl class="list_dl clearfix">
+					<dt class="fl"><a href="javascript:void(0)"><img src="images/re_small1.jpg" width="60" height="60" alt="本期热门推荐"/></a></dt>
+					<dd class="fl">
+						<h6><a href="javascript:void(0)">新学期要穿什么衣服新学期要穿什么衣服</a></h6>
+						<p><a href="javascript:void(0)">九月来了，哦耶，新的一学期驾到了！新学期要有新气象，应首先从穿衣打扮开始，MM们想好要穿什么了吗?是时尚舒适的卫衣，还是百搭自在的T恤，或者选择一件连衣裙来提升气质，当然也可以用风衣来增强气场，保持足够的时尚度，成为校园里的一道靓丽风景。</a></p>
+					</dd>
+				</dl>
+			</div>
+			<div class="follow">
+				<h3>关注我们</h3>
+				<dl class="list_dl clearfix">
+					<dt class="fl"><a href="javascript:void(0)"><img src="images/logo2.jpg" width="80" height="52" alt="本期热门推荐"/></a></dt>
+					<dd class="fl">
+						<h6>2号店官方微博</h6>
+						<p><a href="javascript:void(0)" class="common_bg fow_btn">加关注</a></p>
+					</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+<div class="fotter w980">
+  <ul>
+    <li><a href="javascript:void(0)">ABOUT</a></li>
+    <li><a href="javascript:void(0)">CONTACT</a></li>
+    <li><a href="javascript:void(0)">ADVERTISE</a></li>
+    <li class="last"><a href="javascript:void(0)">PRIVATE POLICY</a></li>
+  </ul>
+  <div class="copyright">
+		<span>Copyright(C)2011-2012 Tohaodian.com</span>
+		<a title="沪ICP备12033705号"  target="_blank" href="http://www.miibeian.gov.cn/">沪ICP备12033705号</a>
+	</div>
+</div>	
+<input type="hidden" value="" id="university_id"/>
+<input type="hidden" value="2" id="province_id"/>
+<a id="goTopBtn" href="javascript:void(0);" ></a>
+<script type="text/javascript">	
+	//初始化返回顶部按钮的代码
+	goTopEx();
+</script></div>
+</body>
+</html>

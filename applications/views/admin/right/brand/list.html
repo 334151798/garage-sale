@@ -1,0 +1,30 @@
+<head>
+{_include file=admin/include/css_js.html_}
+</head>
+<h2 class="clearfix">
+  <span class="p_text">您现在的位置：</span>
+	<a href="{_$admin_url_}column/show/">分类管理</a> &raquo; 
+	<span class="active">品牌列表</span>
+	<a href="{_$admin_url_}brand/add/" class="back fr">新增品牌</a>
+</h2>
+<div id="main">
+<h3>分类列表</h3>
+ 	<table width="100%" cellspacing="0" cellpadding="0" border="0" class="dxtable">
+	  <thead>
+	      <tr>
+	        <th>品牌名称</th>
+	        <th>所属品牌</th>
+	        <th>操作</th>
+	      </tr>
+	  </thead>
+	  <tbody>
+	  {_section name=brand loop=$allBrandList_}
+	  	<tr>
+		    <td><a href="{_$admin_url_}column/update?id={_$allBrandList[brand].id_}">{_$allBrandList[brand].brand_name_}</a></td>
+		    <td>{_if $allBrandList[brand].pid_name_}{_$allBrandList[brand].pid_name_}{_else_}主品牌{_/if_}</td>
+		    <td><a href="{_$admin_url_}brand/update?id={_$allBrandList[brand].id_}">编辑</a> | <a  href="javascript:if(window.confirm('确认删除吗？')){location.href=	'{_$admin_url_}brand/delete?id={_$allBrandList[brand].id_}'}">删除</a></td>
+	   </tr>
+	   {_/section_}
+	  </tbody>
+	</table>
+</div>

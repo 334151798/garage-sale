@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+{_include file=admin/include/css_js.html_}
+<style type="text/css">
+body{width:888px;overflow:hidden;}
+</style>
+</head>
+<body>
+<h2 class="clearfix">
+  <span class="p_text">您现在的位置：</span>
+	<a href="{_$admin_url_}column/show/">分类管理</a> &raquo; 
+	<span class="active">新增品牌</span>
+	<a href="{_$admin_url_}brand/show/" class="back fr">返回品牌列表</a>
+</h2>
+<div id="main">
+ 	<form action="{_$admin_url_}brand/add/" class="jNice registerform" method="post" id="validateForm">
+			<h3>新增品牌</h3>
+     	<fieldset>
+         	<div class="clearfix lists">
+	         	<span class="fl text_label">品牌名称：</span>
+	         	<input type="text" class="text-long fl" name="brand_name" value="{_$brand_name_val_}" />
+	         	{_$brand_name_error_}
+          </div>
+           <div class="clearfix lists">
+          		<span class="fl text_label">品牌类型：</span>
+             <select class="fl" name="pid">
+             	<option value="0">主品牌</option>
+             	{_section name=brand loop=$allBrand_}
+             			<option value="{_$allBrand[brand].id_}">{_$allBrand[brand].brand_name_}</option>
+             	{_/section_}
+             </select>
+             {_$pid_error_}
+          </div>
+             <input type="submit" value="提交" name="submit"/>
+         </fieldset>
+    </form>
+  </div>
+  </body>
+  </html>

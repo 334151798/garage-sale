@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+{_include file=admin/include/css_js.html_}
+<style type="text/css">
+body{width:888px;overflow:hidden;}
+</style>
+</head>
+<body>
+<h2 class="clearfix">
+  <span class="p_text">您现在的位置：</span>
+	<a href="{_$admin_url_}column/show/">分类管理</a> &raquo; 
+	<span class="active">新增分类</span>
+	<a href="{_$admin_url_}column/show/" class="back fr">返回分类列表</a>
+</h2>
+<div id="main">
+ 	<form action="{_$admin_url_}column/add/" class="jNice registerform" method="post" id="validateForm">
+			<h3>新增分类</h3>
+     	<fieldset>
+         	<div class="clearfix lists">
+	         	<span class="fl text_label">分类名称：</span>
+	         	<input type="text" class="text-long fl" name="column_name" value="{_$column_name_val_}" datatype="s2-15"  errormsg="分类名称至少2个字符,最多15个字符！"/>
+	         	{_$navName_error_}
+          </div>
+          <div class="clearfix lists">
+	         	<span class="fl text_label">分类排序：</span>
+	         	<input type="text" class="text-long fl" name="sort" value="{_$sort_val_}" datatype="n1-2" errormsg="分类排序至少1位数字,最多2位数字！"/>
+	         	{_$sort_error_}
+          </div>
+          <div class="clearfix lists">
+          		<span class="fl text_label">分类类型：</span>
+             <select class="fl" name="pid">
+             	<option value="0">主导航</option>
+             	{_section name=column loop=$allColumn_}
+             			<option value="{_$allColumn[column].id_}">{_$allColumn[column].column_name_}</option>
+             	{_/section_}
+             </select>
+             {_$pid_error_}
+          </div>
+          <div class="clearfix lists">
+          	<span class="fl text_label">分类品牌：</span>
+             	<ul class="brand_ul clearfix fl">
+             	{_section name=brand loop=$allBrand_}
+             		<li>
+             			<label>
+             				<input type="checkbox" name="brand[]" value="{_$allBrand[brand].id_}"/>
+             				<span>{_$allBrand[brand].brand_name_}</span>
+             			</label>
+             		</li>
+             	{_/section_}
+             	</ul>
+             	{_$brand_error_}
+          </div>
+          <div class="clearfix lists">
+          	<span class="fl text_label">分类价格：</span>
+             	<ul class="brand_ul clearfix fl">
+             	{_section name=price loop=$allPrice_}
+             		<li>
+             			<label>
+             				<input type="checkbox" name="price[]" value="{_$allPrice[price].id_}"/>
+             				<span>{_if $allPrice[price].price_end<=100_}100以下{_else_}{_$allPrice[price].price_start_} - {_$allPrice[price].price_end_}{_/if_}</span>
+             			</label>
+             		</li>
+             	{_/section_}
+             	</ul>
+             	{_$price_error_}
+          </div>
+          <div class="clearfix lists">
+	         	<span class="fl text_label">分类描述：</span>
+	         	<textarea rows="1" cols="1" name="column_info">{_$column_info_val_}</textarea>
+	         	<span>（20字以内）</span>
+	         	{_$navInfo_error_}
+          </div>		
+             <input type="submit" value="提交" name="submit"/>
+         </fieldset>
+    </form>
+  </div>
+  </body>
+  </html>

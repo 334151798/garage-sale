@@ -1,0 +1,39 @@
+﻿@charset "utf-8";
+/* CSS Document */
+body{background:#fff;}
+.page .login_top{height:84px;padding:40px 57px 0 57px;}
+.page .login_top .login_title h1,.page .login_top .login_title h1 a{display:block;width:94px;height:61px;background:url(../images/logo2.jpg) left top no-repeat;}
+.page .login_top .login_title .title{display:block;height:35px;font-size:25px;line-height:25px;color:#666;margin:25px 0 0 0;}
+.page .login_top .position{width:125px;text-align:right;margin-top:40px;}
+.page .login_top .position li{margin-right:0;}
+.page .login_top .position li a{font-size:14px;}
+
+.page  .login_content{border-top:1px solid #eee;border-bottom:1px solid #eee;padding:37px  0 37px 0 ;}
+.page  .login_content .left_img{width:515px;height:347px;background:url(../images/login_bg2.gif) left top no-repeat;}
+.page  .login_content .form_wrap{width:317px;height:328px;border-top:4px solid #f6f6f6;border-bottom:4px solid #f6f6f6;}
+.page  .login_content .form_wrap .login_form{height:269px;padding:27px 42px 30px 42px;border:1px solid #ddd;_padding-right:0;}
+.page  .login_content .form_wrap .login_form li{}
+.page  .login_content .form_wrap .login_form li .text_label,.page  .regist .regist_wrap  li .text_label{font-size:13px;color:#878787;margin-bottom:12px;}
+.page  .login_content .form_wrap .login_form li input.text,.page  .regist .regist_wrap  li input.text{width:220px;height:22px;line-height:22px;color:#bbb;padding:4px 5px;border:1px solid #ddd;margin-bottom:12px;}
+.page  .login_content .form_wrap .login_form li.btn_li{margin-top:10px;}
+.page  .login_content .form_wrap .login_form li input.btns{width:77px;height:33px;line-height:33px;border:none;color:#fff;font-size:14px;cursor:pointer;margin-right:20px;margin-left:5px;}
+.page  .login_content .form_wrap .login_form li .login_btn{margin-right:10px;*position:relative;*top:-8px;}
+.page  .login_content .form_wrap .login_form li .other_login{margin:20px 0 0 40px;text-align:center;}
+.page  .login_content .form_wrap .login_form li  .qq_login{display:block;width:40px;height:18px;margin:18px 40px 0 0;mrgin-right:45px\9;background-position:-162px 0;}
+.page  .login_content .form_wrap .login_form li.error_li{margin-left:50px;}
+.page  .login_content .form_wrap .login_form li.input{position:relative;}
+.page  .login_content .form_wrap .login_form li.input .tip{position:absolute;top:36px;left:10px;color:#bbb;_top:38px;}
+
+.page  .regist .regist_wrap{margin:20px 0 0 30px;_width:380px;}
+.page  .regist .regist_wrap  li{margin-bottom:20px;position:relative;}
+.page  .regist .regist_wrap  li .text_label{display:block;height:32px;line-height:31px;color:#666;margin:0;width:66px;text-align:right;}
+.page  .regist .regist_wrap  li input.text{border:1px solid #ccc;margin:0;margin-left:5px;}
+.page  .regist .regist_wrap  li .v_tip{width:310px;position:absolute;top:0px;left:300px;}
+.page  .regist .regist_wrap  li .btns{width:140px;height:33px;margin:20px 0 0 70px;font-size:0;line-height:0;border:none;cursor:pointer;background-position:0 -51px;}
+.page  .regist .regist_wrap  li .l_nw{margin-left:30px;position:relative;top:5px;*top:-5px;}
+.page  .regist .regist_wrap .statement{padding-left:75px;padding-top:10px;position:relative;z-index:100;}
+.page  .regist .regist_wrap .statement .state_text{width:520px;height:150px;border:1px solid #ccc;background:#fff;position:absolute;top:35px;left:120px;z-index:101;display:none;}
+.page  .regist .regist_wrap .statement .state_text strong{display:block;font-size:16px;color:#333;height:30px;background:#dedede;line-height:30px;padding-left:15px;}
+.page  .regist .regist_wrap .statement .state_text p{width:500px;height:100px;padding:10px;overflow-y:scroll;}
+.page  .regist .right_img{width:300px;height:347px;background:url(../images/regist_right.gif) left top no-repeat;}
+

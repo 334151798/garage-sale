@@ -1,0 +1,105 @@
+
+.jNiceInputWrapper {
+	background: transparent url(../../elements/input_left.gif) no-repeat left top;
+	height: 23px;
+	padding: 0px;
+
+}
+
+.jNiceInputInner {
+	background: transparent url(../../elements/input_right.gif) no-repeat right top;
+	padding: 2px 4px 2px 0px;
+	margin: 0px 0px 0px 4px;
+}
+
+.jNiceInputInner div {
+	height: 19px;
+}
+
+.jNiceSafari .jNiceInputInner div {
+	position: relative;
+	overflow: hidden;
+}
+
+.jNiceSafari input {
+	background-color: none;
+	position: absolute;
+	top: -2px;
+	left: -4px;
+	height: 26px; 
+}
+
+
+
+/* -------------
+ * Selects
+ * ------------- */
+.jNiceSelectWrapper {
+	width: 260px;
+	position:relative;
+	height: 26px;
+	float: left;
+	border: none !important;
+  margin-right:20px;
+}
+
+.jNiceSelectWrapper div span {
+	float: none;
+	position: absolute;
+	width: 245px;
+	height: 26px;
+	background: url(../images/select_left.gif) no-repeat left top;
+	line-height: 18px;
+	font: 12px/12px Arial, Helvetica, sans-serif;
+	color: #666;
+	padding: 7px 7px 0;
+	overflow: hidden;
+	border: none !important;
+}
+
+.jNiceSelectWrapper div a {
+	display: block;
+	position: absolute;
+	right: 0px;
+	width: 30px;
+	border: none;
+	height: 26px;
+	background: url(../images/select_right.gif) no-repeat center center;
+}
+
+.jNiceSelectWrapper ul {
+	position: absolute;
+	width: 258px !important;
+	top: 26px;
+	left: 0px;
+	list-style: none;
+	background-color: #FFF;
+	display: none;
+	margin: 0px;
+	padding: 0px;
+	border: 1px solid #eaeaea;
+	max-height: 99px;
+	overflow: auto;
+	overflow-y: auto;
+	z-index:100;
+}
+
+.jNiceSelectWrapper ul li { width: auto !important; }
+
+
+.jNiceSelectWrapper ul a {
+	display: block;
+	padding: 7px 7px;
+	text-decoration: none;
+	color: #9b9b9b;
+	font: 12px/12px Arial, Helvetica, sans-serif;
+	background-color: #FFF;
+}
+
+.jNiceSelectWrapper ul a:hover { background:#f6f6f6; text-decoration:none;}
+.jNiceSelectWrapper ul a.selected { background: #f0f7fa; color: #c66653; }
+
+/* -------------
+ * Hidden - used to hide the original form elements
+ * ------------- */
+.jNiceHidden {display: none;}

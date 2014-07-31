@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>2号店修改需求</title>
+{_include file=front/include/common_include.html_}
+<link href="css/jNice.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="js/uploadify/uploadify.css" type="text/css" />
+
+<!-- JavaScripts-->
+<script type="text/javascript" src="js/uploadify/jquery.uploadify-3.1.min.js"></script>
+<script type="text/javascript" src="js/jNice.js"></script>
+<script type="text/javascript" src="js/inputFocus.js"></script>
+<script type="text/javascript" src="js/setSelectRadioCheckboxDefault.js"></script>
+<script type="text/javascript" src="js/navLinkSelect.js"></script>
+<script type="text/javascript" src="js/kindeditor-4.1/kindeditor-min.js"></script>
+<script type="text/javascript" src="js/kindeditor-4.1/lang/zh_CN.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/validateForm.js"></script>
+<script type="text/javascript" src="js/initialize_kindEditor.js"></script>
+<script type="text/javascript" >
+jQuery(function ($){
+	/*开始图片上传*/
+	
+	//如果没有图片，就让那个div不显示
+	function setUploadWrapDisplay(){
+		if ($(".page .request .upload .upload_right ul li").length >0){
+			$(".page .request .upload .upload_right").show();
+		}else{
+			$(".page .request .upload .upload_right").hide();
+		}
+	}
+	
+	//上传图片时，右上角的删除按钮js
+	function delImgs(){
+		var allCloseBtns = $(".close_light");
+		$.each(allCloseBtns,function() {
+			$(this).bind("mouseover",function() {
+				$(this).css("background-position", "right top");
+			});
+			$(this).bind("mouseout",function() {
+				$(this).css("background-position", "left top");
+			});
+			$(this).bind("click",function() {
+				var _this=$(this);
+				_this.parent().remove();
+				setUploadWrapDisplay();
+			});
+		});
+	}
+
+	/*上传需求图片*/
+	$('#article_imgs_upload').uploadify({
+		'buttonText' : '上传图片',
+		'width'         : 120,
+		'height'        : 30,
+		'fileSizeLimit' : '300KB',
+		'fileTypeExts' : '*.gif; *.jpg; *.png',
+		'removeTimeout' : 0.1,
+		'swf'           : 'js/uploadify/uploadify.swf',
+		'uploader'      : '{_$front_url_}upload/load/',
+		'auto'          : true,
+	    'multi'         : true,
+	    'onUploadStart' : function(file) {
+	    	$('#article_imgs_upload').uploadify('settings','articleType','2');
+	    },
+       'onUploadSuccess' : function(file, data, response) {
+	      //data=jQuery.parseJSON(data);
+		    $("#articlePics").append("<li><input type='hidden' value="+data+" name='thumbs[]'/><img  src='" + data + "' width='100' height='100'/><em class='close_light' style='right:-4px;top:-2px;'></em></li>");
+		    delImgs();
+		    setUploadWrapDisplay();
+	    }
+	});
+
+	//删除按钮
+	delImgs();
+	
+	setUploadWrapDisplay();
+	
+	/*结束图片上传*/
+});
+
+
+</script>
+{_include file=front/include/ie6png.html_}
+</head>
+
+<body>
+<div class="page">
+{_include file=front/include/header.html_}
+	<div class="position w980 ">
+		<ul class="position_ul clearfix">
+			<li class="first">您现在的位置：</li>
+			<li><a href="{_$front_url_}">首页</a></li>
+			<li class="" title=""><a href="{_$front_url_}user/center.html">个人中心</a></li>
+			<li class="cur">修改需求</li>
+		</ul>
+	</div>
+	<div class="request w980 wraps">	
+	 <input type="hidden" value="{_$admin_url_}" id="admin_url"/>
+		<form action="{_$front_url_}request/update/" class="" method="post" id="validateForm">
+			<ul>
+	         <li class="clearfix lists">
+	         	<div class="fl radio_wrap" ov={_$requestDetail.type_}>
+	         	 	  <span class="fl text_label">供　　需：</span>
+	         	 	  <div class="fl ridio_right">
+	         	 	  	<label><input type="radio"  name="type" class="radio" value="1"  datatype="*" nullmsg="供需类型！" errormsg="请选择供需类型！！"/><span class="radio_span">转让</span></label>
+			         	  <label><input type="radio"  name="type" class="radio" value="2"/><span class="radio_span">求购</span></label>
+			         	  <label><input type="radio"  name="type" class="radio" value="3"/><span class="radio_span">招租</span></label>
+	         	 	  </div>
+	         	 </div>
+		          <div class="fl">
+	             	  <div class="Validform_checktip"></div>
+	                <div class="info">请选择供需类型<span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
+	            </div>
+	          </li>
+	          <li class="clearfix lists " id="setSelectWrap">
+	            <div class="fl">
+	            	<span class="fl text_label">需求类别：</span>
+		             <select class="fl main_nav" name="column" datatype="*" nullmsg="请选择需求类别！" errormsg="请选择需求类别！" ov={_$requestDetail.column_}>
+		             	<option value="">请选择需求类别</option>
+		             	{_section name=nav loop=$allMainColumn_}
+		             			<option value="{_$allMainColumn[nav].id_}">{_$allMainColumn[nav].column_name_}</option>
+		             	{_/section_}
+		             </select>
+		             <select class="fl sub_nav sub_select" name="nav" ov={_$requestDetail.nav_}>
+		             <option value="">请选择二级类别</option>
+		             </select>
+	            </div>
+	          	<div class="fl">
+	           		<div class="Validform_checktip"></div>
+	              <div class="info">请选择需求类别<span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
+	            </div>
+	          </li>
+	          <li class="clearfix lists " id="brandSelectWrap">
+	             <div class="fl">
+	             	  <span class="fl text_label">物品品牌：</span>
+			             <select class="fl main_nav" name="brand_main" datatype="*" nullmsg="请选择物品品牌！" errormsg="请选择物品品牌！" ov={_$requestDetail.brand_main_}>
+			             <option value="">请选择物品品牌</option>
+			             	{_section name=brand loop=$allMainBrand_}
+			             			<option value="{_$allMainBrand[brand].id_}">{_$allMainBrand[brand].brand_name_}</option>
+			             	{_/section_}
+			             </select>
+			             <select class="fl sub_nav sub_select" name="brand_sub" ov={_$requestDetail.brand_sub_}>
+			             <option value="">请选择具体型号</option>
+			             </select>
+			             {_$pid_error_}
+	             </div>
+	             <div class="fl">
+	           		<div class="Validform_checktip"></div>
+	              <div class="info">请选择物品品牌<span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
+	            </div>
+	          </li>
+	          <li class="clearfix lists">
+	            <div class="fl">
+	            	<span class="fl text_label">新旧程度：</span>
+	          		<select name="old_level" class="fl" datatype="*" nullmsg="请选择新旧程度！" errormsg="请选择新旧程度！ ov={_$requestDetail.old_level_}>
+	           			<option value="">请选择新旧程度</option>
+	           			<option value="1">全新</option>
+	           			<option value="2" selected="selected">95成新</option>
+	           			<option value="3">9成新</option>
+	           			<option value="4">85成新</option>
+	           			<option value="5">8成新</option>
+	           			<option value="6">7成新及以下</option>
+		            </select>
+	             {_$pid_error_}
+	            </div>
+	          	<div class="fl">
+	           		<div class="Validform_checktip"></div>
+	              <div class="info">请选择新旧程度<span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
+	            </div>	
+	          </li>
+	          <li class="clearfix lists">
+	            <div class="fl">
+	            	<span class="fl text_label">标　　题：</span>
+	              <input type="text" class="text fl" name="title" value="{_$requestDetail.title_}" datatype="s5-35"  errormsg="标题至少5个字符,最多35个字符！"/>
+	             {_$title_error_}
+	            </div>
+	             <div class="fl">
+	             	<div class="Validform_checktip"></div>
+	               <div class="info">标题至少5个字符,最多35个字符<span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
+	             </div>
+	          </li>
+	          <li class="clearfix lists">
+	            <div class="fl">
+	            	 <span class="fl text_label">期望价格：</span>
+	               <input type="text" class="text fl" name="price" value="{_$requestDetail.price_}" datatype="n1-6"  errormsg="价格为1-6位数字"/>
+	               <span class="fl text_label ml10">元</span>
+	              {_$price_error_}
+	            </div>
+	            <div class="fl">
+	           		<div class="Validform_checktip"></div>
+	              <div class="info">请输入期望价格<span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
+	            </div>
+	          </li>
+	          <li class="clearfix lists info_li">
+	            <div class="fl">
+	            	<span class="fl text_label">补充说明：</span>
+			         	<textarea rows="1" cols="1" name="info" >{_$requestDetail.info_}</textarea>
+			         	{_$info_error_}
+	            </div>
+		        <div class="fl">
+	             	<div class="Validform_checktip"></div>
+	               <div class="info">补充说明至少5个字符,最多2000个字符<span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
+	            </div>
+	          </li>	
+	          <li class="clearfix lists upload">
+	          	<div class="upload_btns clearfix">
+	            	<span class="fl text_label">上传图片：</span>
+		         	<input id="article_imgs_upload" name="" type="file" /> 
+	            </div>
+	            <div class="upload_right" id="">
+								<ul id="articlePics" >
+								{_section name=img loop=$requestDetail.thumbs_}
+								<li ><input type='hidden' value='{_$requestDetail.thumbs[img]_}' name='thumbs[]'/><img  src="{_$requestDetail.thumbs[img]_}" width='100px' height='100px'/><em class='close_light' style='right:-4px;top:-2px;'></em></li>
+								{_/section_}
+								</ul>
+							</div>	
+	          </li>	
+	          <li class="clearfix lists">
+	            <div class="fl">
+	            	<span class="fl text_label">　联系人：</span>
+		             <input type="text" class="text fl" name="contact_name" value="{_$requestDetail.contact_name_}"  datatype="s2-10"  errormsg="联系人名字至少2个字符,最多10个字符！"/>
+			         	{_$contact_name_error_}
+	            </div>
+		         	<div class="fl">
+	             	<div class="Validform_checktip"></div>
+	               <div class="info">请输入联系人姓名<span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
+	             </div>
+	          </li>
+	          <li class="clearfix lists">
+		          <div class="fl">
+		          	<span class="fl text_label">联系电话：</span>
+		             <input type="text" class="text fl" name="telephone" value="{_$requestDetail.telephone_}" datatype="m" nullmsg="请输入您的手机号码！" errormsg="请输入您的手机号码！"/>
+		          </div>
+		         	<div class="fl">
+	            	<div class="Validform_checktip"></div>
+	              <div class="info">请输入您的手机号码<span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
+	            </div>
+	          </li>
+	          <li class="lists"> 
+	             <input type="hidden" value="{_$requestDetail.id_}" name="id"/>
+	          	 <input type="submit" value="提交" name="submit" class="common_bg su_btn"/>
+	          </li>
+	       </ul>
+	    </form>
+	</div>
+{_include file=front/include/footer.html_}
+</div>
+</body>
+</html>

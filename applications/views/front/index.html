@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>2号店</title>
+{_include file=front/include/common_include.html_}
+{_include file=front/include/ie6png.html_}
+</head>
+
+<body>
+<div class="page">
+{_include file=front/include/header.html_}
+	<div class="big_img wraps clearfix">
+		<div class="imgs_wrap fl">
+			<img src="images/big_img/demo1.jpg" width="645" height="245" alt="2号店首页推荐"/>
+		</div>
+		<div class="big_text fl">
+			<dl class="big_dl">
+				<dt class="common_bg"><a href="javascript:void(0)" class="ndl">2012十大校园最受欢迎笔记本推荐</a></dt>
+				{_section name=request loop=$hotRequestList_}
+					<dd class="common_bg"><a href="{_$front_url_}request/requestDetail/{_$hotRequestList[request].id_}.html" target="_blank">{_$hotRequestList[request].title|mb_truncate:30_}</a></dd>
+        {_/section_}
+			</dl>
+			<p class="release"><a href="{_$front_url_}request/add.html" class="common_bg out_text need_university">发布需求</a></p>
+		</div>
+	</div>
+	<div class="main w980 clearfix">
+		<div class="hot fl">
+			<h2 class="title">HOTS | 热门买卖</h2>
+			<ul class="hot_list_ul">
+	   			{_section name=request loop=$requestList_}
+        	  <li class="hot_list_li clearfix wraps">
+	            <div class="img fl">
+	              <a href="{_$front_url_}request/requestDetail/{_$requestList[request].id_}.html" target="_blank" ><img src="{_$requestList[request].thumbs_}" width="240" height="160" /></a>
+	            </div>
+	            <div class="text fl">
+	            	<h4><a href="{_$front_url_}request/requestDetail/{_$requestList[request].id_}.html" target="_blank" class="f44" title="{_$requestList[request].title|mb_truncate:40_}">{_$requestList[request].title_} </a></h4>
+	            	<p class="pirce ">Price:<span class="num">￥{_$requestList[request].price_}元</span></p>
+		            <span class="time">{_if $requestList[request].from_days!=0_}{_$requestList[request].from_days_} days ago{_else_}Today {_/if_}&middot; by {_$requestList[request].user_name_} &middot; {_$requestList[request].view_count_} views</span>
+		            <div class="tags">Tags: {_$requestList[request].university_}, <a href="{_$front_url_}request/index/?nav={_$cur_nav|default:0_}&old_level={_$cur_oldLevel|default:0_}&brand={_$requestList[request].brand_main_}&price={_$cur_price|default:0_}">{_$requestList[request].brand_name_}</a></div>
+		            <p>{_$requestList[request].info|mb_truncate:135_}</p>
+	            </div>
+	          </li>
+	          {_/section_}
+	       </ul>
+	       {_$pageFen_}
+		</div>
+		<div class="right wraps fr">
+			<div class="recommend">
+				<h3>本周推荐</h3>
+				<dl class="rec_dl">
+					<dt><a href="javascript:void(0)"><img src="images/recom_img1.jpg" width="240" height="130" alt="本期热门推荐"/></a></dt>
+					<dd>
+						<h6><a href="javascript:void(0)">新学期要穿什么衣服</a></h6>
+						<p><a href="javascript:void(0)">九月来了，哦耶，新的一学期驾到了！新学期要有新气象，应首先从穿衣打扮开始，MM们想好要穿什么了吗?是时尚舒适的卫衣，还是百搭自在的T恤，或者选择一件连衣裙来提升气质，当然也可以用风衣来增强气场，保持足够的时尚度，成为校园里的一道靓丽风景。</a></p>
+					</dd>
+				</dl>
+				<dl class="list_dl clearfix">
+					<dt class="fl"><a href="javascript:void(0)"><img src="images/re_small1.jpg" width="60" height="60" alt="本期热门推荐"/></a></dt>
+					<dd class="fl">
+						<h6><a href="javascript:void(0)">新学期要穿什么衣服新学期要穿什么衣服</a></h6>
+						<p><a href="javascript:void(0)">九月来了，哦耶，新的一学期驾到了！新学期要有新气象，应首先从穿衣打扮开始，MM们想好要穿什么了吗?是时尚舒适的卫衣，还是百搭自在的T恤，或者选择一件连衣裙来提升气质，当然也可以用风衣来增强气场，保持足够的时尚度，成为校园里的一道靓丽风景。</a></p>
+					</dd>
+				</dl>
+				<dl class="list_dl clearfix">
+					<dt class="fl"><a href="javascript:void(0)"><img src="images/re_small1.jpg" width="60" height="60" alt="本期热门推荐"/></a></dt>
+					<dd class="fl">
+						<h6><a href="javascript:void(0)">新学期要穿什么衣服新学期要穿什么衣服</a></h6>
+						<p><a href="javascript:void(0)">九月来了，哦耶，新的一学期驾到了！新学期要有新气象，应首先从穿衣打扮开始，MM们想好要穿什么了吗?是时尚舒适的卫衣，还是百搭自在的T恤，或者选择一件连衣裙来提升气质，当然也可以用风衣来增强气场，保持足够的时尚度，成为校园里的一道靓丽风景。</a></p>
+					</dd>
+				</dl>
+				<dl class="list_dl clearfix">
+					<dt class="fl"><a href="javascript:void(0)"><img src="images/re_small1.jpg" width="60" height="60" alt="本期热门推荐"/></a></dt>
+					<dd class="fl">
+						<h6><a href="javascript:void(0)">新学期要穿什么衣服新学期要穿什么衣服</a></h6>
+						<p><a href="javascript:void(0)">九月来了，哦耶，新的一学期驾到了！新学期要有新气象，应首先从穿衣打扮开始，MM们想好要穿什么了吗?是时尚舒适的卫衣，还是百搭自在的T恤，或者选择一件连衣裙来提升气质，当然也可以用风衣来增强气场，保持足够的时尚度，成为校园里的一道靓丽风景。</a></p>
+					</dd>
+				</dl>
+			</div>
+			<div class="follow">
+				<h3>关注我们</h3>
+				<dl class="list_dl clearfix">
+					<dt class="fl"><a href="javascript:void(0)"><img src="images/logo2.jpg" width="80" height="52" alt="本期热门推荐"/></a></dt>
+					<dd class="fl">
+						<h6>2号店官方微博</h6>
+						<p><a href="javascript:void(0)" class="common_bg fow_btn">加关注</a></p>
+					</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+{_include file=front/include/footer.html_}
+</div>
+</body>
+</html>

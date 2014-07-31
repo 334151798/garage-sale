@@ -1,0 +1,43 @@
+<head>
+{_include file=admin/include/css_js.html_}
+</head>
+<h2 class="clearfix">
+  <span class="p_text">您现在的位置：</span>
+	<a href="{_$admin_url_}requestAdmin/showUnAuditRequest/">供需管理</a> &raquo; 
+	<span class="active">待审核的供求列表</span>
+	<!--  <a href="{_$admin_url_}column/add/" class="back fr">新增分类</a>-->
+</h2>
+<div id="main">
+<h3>已审核的供求列表</h3>
+ 	<table width="100%" cellspacing="0" cellpadding="0" border="0" class="dxtable">
+	  <thead>
+	      <tr>
+	        <th height="40">需求标题</th>
+	        <th>供需类型</th>
+	        <th>所属类别</th>
+	        <th>新旧程度</th>
+	        <th>价格</th>
+	        <!-- <th>联系人</th> -->
+	        <th>联系电话</th>
+	        <th>发布时间</th>
+	        <th>操作</th>
+	      </tr>
+	  </thead>
+	  <tbody>
+	  {_section name=request loop=$unAuditRequestList_}
+	  	<tr>
+		    <td height="40" title="{_$unAuditRequestList[request].title_}"><a href="{_$admin_url_}requestAdmin/update/?id={_$unAuditRequestList[request].id_}">{_$unAuditRequestList[request].title|mb_truncate:6_}</a></td>
+		   	<td title="{_$unAuditRequestList[request].type_name_}">{_$unAuditRequestList[request].type_name|mb_truncate:6_}</td>
+		    <td title="{_$unAuditRequestList[request].column_name_}">{_$unAuditRequestList[request].column_name|mb_truncate:6_}</td>
+		    <td title="{_$unAuditRequestList[request].old_level_name_}">{_$unAuditRequestList[request].old_level_name|mb_truncate:6_}</td>
+		    <td title="{_$unAuditRequestList[request].price_}">{_$unAuditRequestList[request].price|mb_truncate:4_}元</td>
+		    <!--  <td title="{_$unAuditRequestList[request].contact_name_}">{_$unAuditRequestList[request].contact_name|mb_truncate:4_}</td>-->
+		    <td title="{_$unAuditRequestList[request].telephone_}">{_$unAuditRequestList[request].telephone|mb_truncate:6_}</td>
+		    <td title="{_$unAuditRequestList[request].publish_time_}">{_$unAuditRequestList[request].publish_time|mb_truncate:12_}</td>
+		    <td><a href="javascript:if(window.confirm('确认让该需求通过审核吗？')){location.href=	'{_$admin_url_}requestAdmin/audit/?id={_$unAuditRequestList[request].id_}'}" class="emprise">通过</a> | <a href="{_$admin_url_}requestAdmin/update/?id={_$unAuditRequestList[request].id_}">编辑</a> | <a  href="javascript:if(window.confirm('确认删除吗？')){location.href=	'{_$admin_url_}requestAdmin/delete/?id={_$unAuditRequestList[request].id_}'}">删除</a></td>
+	   </tr>
+	   {_/section_}
+	   <tr><td colspan="8">{_$pageFen_}</td></tr>
+	  </tbody>
+	</table>
+</div>

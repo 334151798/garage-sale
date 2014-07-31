@@ -1,0 +1,58 @@
+<?php /* Smarty version 2.6.26, created on 2012-09-16 11:32:04
+         compiled from admin/admin.html */ ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Coly Admin</title>
+<base href="<?php echo $this->_tpl_vars['admin_path']; ?>
+"/>
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "admin/include/css_js.html", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
+<script type="text/javascript" src='js/setNavActive.js'></script>
+</head>
+<body>
+	<div id="wrapper">
+    	<!-- h1 tag stays for the logo, you can use the a tag for linking the index page -->
+    	<h1><a href="#"><span>Coly Admin</span></a></h1>
+        <!-- You can name the links with lowercase, they will be transformed to uppercase by CSS, we prefered to name them with uppercase to have the same effect with disabled stylesheet -->
+        <ul id="mainNav" class="nav_ul">
+        	<li><a href="left/request_sidebar.html" class="" target="leftMenu">供需管理</a></li> <!-- Use the "active" class for the active menu item  -->
+        	<li><a href="#" target="leftMenu">招租管理</a></li>
+        	<li><a href="left/column_sidebar.html" target="leftMenu">分类管理</a></li>
+        	<li><a href="#" target="leftMenu">会员管理</a></li>
+        	<li class="logout clearfix">
+        		<p class="welcome">欢迎回来！　　<span class="userName">曾经的回忆</span></p>
+        		<a href="#">LOGOUT</a>
+        	</li>
+        </ul>
+        <!-- // #end mainNav -->
+        
+        <div id="containerHolder">
+			<div id="container">
+							<div id="sidebar">
+								<iframe id="sideFrame" src="left/request_sidebar.html" name="leftMenu" scrolling="auto" frameborder="0" url="<?php echo $this->_tpl_vars['admin_url']; ?>
+"></iframe>
+							</div>    
+                <!-- h2 stays for breadcrumbs -->
+              <div id="right_content">
+              	<iframe id="contentFrame" src="right/request/list_un.html" name="rightContent" scrolling="auto" frameborder="0" ></iframe>
+             	</div>
+                
+                
+                <!-- // #main -->
+                
+                <div class="clear"></div>
+            </div>
+            <!-- // #container -->
+        </div>	
+        <!-- // #containerHolder -->
+        
+        <p id="footer">Feel free to use and customize it. <a href="http://www.perspectived.com">Credit is appreciated.</a></p>
+    </div>
+    <!-- // #wrapper -->
+</body>
+</html>

@@ -1,0 +1,115 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+/*新增需求*/
+.page .request{width:930px;padding:20px 25px;}
+.page .request .lists,.page .user_center .right .infos form.my_infos ul li.lists {height:31px;margin-bottom:20px;font-size:13px;}
+.page .request .info_li,.page .user_center .right .infos form.my_infos ul li.lists .info_li {height:140px;}
+.page .request .info_li textarea{width:450px;height:100px;padding:5px;border:1px solid #ccc;color:#bbb;height:120px\9;}
+
+.page .request .lists .ridio_right{}
+.page .request .lists .ridio_right label,.page .user_center .right .infos form.my_infos ul li.lists  label{display:block;height:31px;line-height:31px;margin-right:20px;float:left;*display:inline;}
+.page .request .lists .radio_span,.page .user_center .right .infos form.my_infos ul li.lists  .radio_span{margin-left:10px;}
+.page .request .lists .text_label,.page .user_center .right .infos form.my_infos ul li.lists  .text_label,.page .user_center .right .infos form.my_infos ul li a.validate_email{display:block;height:31px;line-height:29px;font-size:15px;}
+.page .request .lists input.text,.page .user_center .right .infos form.my_infos ul li.lists  input.text{width:250px;height:23px;line-height:23px;padding:2px 4px;border:1px solid #ccc;color:#bbb;}
+.page .request .lists select{max-width:250px;font-size:15px;border:1px solid #ccc;height:25px;margin-right:20px;margin-top:4px;}
+.page .request .lists .sub_select{display:none;}
+.page .request .lists .su_btn{width:139px;height:44px;margin-left:72px;background-position:0 -116px;border:none;cursor:pointer;font-size:0;line-height:0;}
+
+.page .request .upload{height:auto;}
+.page .request .upload .upload_btns{height:40px;width:600px\0;position:relative\0;top:15px\0;}
+.page .request .upload .upload_btns .click_btn{margin:10px 0 0 20px;}
+ 
+.page .request .upload .upload_right{margin-top:10px;margin-top:25px\0;}
+#article_imgs_upload{float:left;*display:inline;}
+
+#articlePics{width:905px;padding:10px;border:1px dashed #ccc;}
+#articlePics li{width:100px;height:100px;position:relative;margin:0 7px 10px 0;display:inline-block;*zoom:1;*display:inline;}
+
+#articlePics li em.close_light,.btnDiv li em.close_light,.input_content form .vote_div ul.vote_ul li.answer em.del_select{cursor:pointer;display:block;width:18px;height:18px;background:url(../images/del_light.png) no-repeat left top;position:absolute;top:-8px;right:4px;z-index:10;} 
+.btnDiv a:hover{ background:#fbe3e4; border:1px solid #fbc2c4;color:#d12f19;}
+.btnDiv a:active{background-color:#d12f19;border:1px solid #d12f19;color:#fff;}
+
+
+/*需求详细*/
+.page .main .product_detail{width:700px;padding:20px;}
+.page .main .product_detail h1{font-size:19px;line-height:25px;color:#000;font-weight:bold;}
+.page .main .product_detail .tool{margin:20px 0;}
+.page .main .product_detail .tool li{height:26px;line-height:26px;float:left;*display:inline;font-size:14px;margin-right:30px;padding-left:25px;}
+.page .main .product_detail .tool li.date{background-position:-186px -355px;}
+.page .main .product_detail .tool li.views{background-position:-186px -290px;}
+.page .main .product_detail .tool li.collect{background-position:-186px -334px;}
+.page .main .product_detail .tool li.user{background-position:-186px -313px;}
+#bdshare{line-height:16px;}
+#bdshare .bds_more{background:url(../images/common_bg.png) -187px -378px no-repeat !important;font-size:14px;}
+
+
+.page .main  .product_detail  .text_wrap .left_img{width:270px;}
+.page .main  .product_detail  .text_wrap .left_img .imgs_w{width:270px;border:1px solid #ccc;width:251px;height:200px;}
+.page .main  .product_detail  .text_wrap .left_img .thumb_wrap{margin-top:15px;}
+.page .main  .product_detail  .text_wrap .left_img .thumb_wrap ul li{float:left;*display:inline;margin-right:15px;}
+.page .main  .product_detail  .text_wrap .left_img .thumb_wrap ul li a{display:block;width:50px;height:45px;border:1px solid #ccc;}
+.page .main  .product_detail  .text_wrap .left_img .thumb_wrap ul li a.zoomThumbActive{border:1px solid #f44;}
+
+.page .main  .product_detail  .text_wrap .right_contact{margin-left:10px;padding-top:13px;}
+.page .main  .product_detail  .text_wrap .right_contact li{margin-bottom:40px;font-size:15px;}
+.page .main  .detail{}
+.page .main  .detail h6.de_title{border-bottom:1px solid #d44;}
+.page .main  .detail h6.de_title strong{display:block;width:100px;height:30px;background:#d44;color:#fff;text-align:center;line-height:30px;font-size:14px;}
+.page .main  .detail .inner_text{padding:20px 5px 5px 5px;font-size:14px;line-height:180%;}
+
+
+/*需求详细右边*/
+.page .main .inner_right{width:200px;padding:10px;}
+.page .main .inner_right .release p,.page .main .request_right .release p{font-size:15px;margin:20px 0;text-align:center;}
+.page .main .inner_right .release p.re{}
+.page .main .inner_right .release a,.page .main .request_right .release a{display:block;width:157px;height:49px;margin:0 auto;background-position:0 -190px;}
+.page .main .inner_right .release a:hover,.page .main .request_right .release a:hover{background-position:0 -259px;}
+.page .main .request_right .release p{margin-bottom:20px;}
+
+
+/*个人中心*/
+.page .user_center{font-size:14px;line-height:20px;}
+.page .user_center .left{width:170px;text-align:center;padding-bottom:310px;}
+.page .user_center .left ul{padding-top:10px;}
+.page .user_center .left ul li{text-align:center;margin-bottom:20px;color:#111;font-weight:bold;font-size:16px;line-height:20px;}
+.page .user_center .left ul li.user_li{text-indent:-10px;letter-spacing:3px;}
+.page .user_center .left ul li a{font-weight:normal;font-size:14px;padding-left:20px;margin-left:-12px;}
+.page .user_center .left ul li a:hover,.page .user_center .left ul li.active a{text-decoration:none;color:#288bbe;}
+.page .user_center .left ul li a.pub{background-position:-187px -186px;}
+.page .user_center .left ul li a.coll{background-position:-187px -211px;_background-position:-187px -209px;}
+.page .user_center .left ul li a.data{background-position:-187px -233px;_background-position:-187px -230px;}
+.page .user_center .left ul li a.pub:hover,.page .user_center .left ul li.active a.pub{background-position:-187px -433px;}
+.page .user_center .left ul li a.coll:hover,.page .user_center .left ul li.active a.coll{background-position:-187px -458px;_background-position:-187px -456px;}
+.page .user_center .left ul li a.data:hover,.page .user_center .left ul li.active a.data{background-position:-187px -480px;_background-position:-187px -477px;}
+
+/*我的收藏，我的发布*/
+.page .user_center .right{width:785px;}
+.page .user_center .right h6{padding:5px 20px;}
+.page .user_center .right .infos{padding:20px;}
+.page .user_center .right h6{height:30px;line-height:30px;font-size:17px;border-bottom:1px solid #ddd;color:#111;font-weight:bold;}
+.page .user_center .right .infos .request_head{width:650px;;border-left:1px solid #ccc;}
+.page .user_center .right .infos .request_head li{}
+.page .user_center .right .infos .request_head li a{display:block;width:150px;height:30px;line-height:30px;font-size:16px;text-align:center;color:#111;background:#fefefe;border:1px solid #ccc;border-left:none;}
+.page .user_center .right .infos .request_head li a:hover,.page .user_center .right .infos .request_head li a.active{text-decoration:none;background:#fff;color:#444;border-bottom:1px solid #fff;position:relative;z-index:10;}
+.page .user_center .right .infos .re_list_wrap{border:1px solid #ccc;padding:15px;margin-top:-1px;}
+.page .user_center .right .infos .re_list_wrap .re_list{display:none;}
+.page .user_center .right .infos .re_list_wrap .active{display:block;}
+.page .user_center .right .infos .re_list_wrap .re_list dl.request_dl{padding:15px 5px;border-bottom:1px solid #ddd;}
+.page .user_center .right .infos .re_list_wrap .re_list dl.request_dl dt{width:600px;}
+.page .user_center .right .infos .re_list_wrap .re_list dl.request_dl dt a	{display:block;width:510px;color:#333;}
+.page .user_center .right .infos .re_list_wrap .re_list dl.request_dl dt a.left_thumbs	{width:60px;height:50px;margin:0 20px 0 0;}
+.page .user_center .right .infos .re_list_wrap .re_list dl.request_dl dt .request_title{width:500px;overflow:hidden;}
+.page .user_center .right .infos .re_list_wrap .re_list dd  a{color:#a01c1c;}
+
+
+/*个人资料*/
+.page .user_center .right .infos form.my_infos{}
+.page .user_center .right .infos form.my_infos ul li.title{font-size:14px;color:#111;line-height:20px;margin:0 0 20px 0;}
+.page .user_center .right .infos form.my_infos ul li.upload{height:150px;}
+.page .user_center .right .infos form.my_infos ul li.upload .pic{width:134px;height:134px;background:#fff;border:1px solid #ccc;}
+.page .user_center .right .infos form.my_infos ul li.upload .upload_btns{width:500px;margin:50px 0 0 100px;}
+.page .user_center .right .infos form.my_infos ul li a.validate_email{width:180px;font-size:15px;color:#f44;}
+.page .user_center .right .infos form.my_infos ul li.lists  select{height:20px;margin:5px 15px 0 0;}
+.page .user_center .right .infos form.my_infos ul li.lists  .su_btn{width:77px;height:33px;border:none;color:#fff;font-size:14px;cursor:pointer;margin-right:20px;margin-left:5px;}
+

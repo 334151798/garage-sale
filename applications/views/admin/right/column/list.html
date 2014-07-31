@@ -1,0 +1,34 @@
+<head>
+{_include file=admin/include/css_js.html_}
+</head>
+<h2 class="clearfix">
+  <span class="p_text">您现在的位置：</span>
+	<a href="{_$admin_url_}column/show/">分类管理</a> &raquo; 
+	<span class="active">分类列表</span>
+	<a href="{_$admin_url_}column/add/" class="back fr">新增分类</a>
+</h2>
+<div id="main">
+<h3>分类列表</h3>
+ 	<table width="100%" cellspacing="0" cellpadding="0" border="0" class="dxtable">
+	  <thead>
+	      <tr>
+	        <th>导航名称</th>
+	        <th>排序</th>
+	        <th>所属分类</th>
+	        <th>品牌</th>
+	        <th>操作</th>
+	      </tr>
+	  </thead>
+	  <tbody>
+	  {_section name=nav loop=$allNavList_}
+	  	<tr>
+		    <td><a href="{_$admin_url_}column/update?id={_$allNavList[nav].id_}">{_$allNavList[nav].column_name|mb_truncate:15_}</a></td>
+		    <td>{_$allNavList[nav].sort_}</td>
+		    <td>{_if $allNavList[nav].pidName_}{_$allNavList[nav].pidName_}{_else_}主导航{_/if_}</td>
+		    <td title="{_$allNavList[nav].brand_}">{_if $allNavList[nav].brand_}{_$allNavList[nav].brand|mb_truncate:30_}{_else_}该分类下没有品牌{_/if_}</td>
+		    <td><a href="{_$admin_url_}column/update?id={_$allNavList[nav].id_}">编辑</a> | <a  href="javascript:if(window.confirm('确认删除吗？')){location.href=	'{_$admin_url_}column/delete?id={_$allNavList[nav].id_}'}">删除</a></td>
+	   </tr>
+	   {_/section_}
+	  </tbody>
+	</table>
+</div>
